@@ -1,24 +1,33 @@
-﻿namespace Spender;
+﻿using Spender.DataService;
+using System.Diagnostics;
+
+namespace Spender;
 
 public partial class MainPage : ContentPage
 {
-	int count = 0;
-
-	public MainPage()
+	private readonly ISpendDataService _service;
+	
+	public MainPage(ISpendDataService service)
 	{
 		InitializeComponent();
+		this._service = service;
 	}
 
-	private void OnCounterClicked(object sender, EventArgs e)
+	protected async override void OnAppearing()
 	{
-		count++;
+		base.OnAppearing();
 
-		if (count == 1)
-			CounterBtn.Text = $"Clicked {count} time";
-		else
-			CounterBtn.Text = $"Clicked {count} times";
+		collectionView.ItemsSource = await _service.GetAllAsync();
+	}
 
-		SemanticScreenReader.Announce(CounterBtn.Text);
+	async void OnAddSpendClicked(object sender, EventArgs e)
+	{
+		Debug.WriteLine("---> Add button clicked");
+	}
+
+	async void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+	{
+		Debug.WriteLine("---> Select button clicked");
 	}
 }
 
