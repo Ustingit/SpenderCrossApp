@@ -101,10 +101,21 @@ namespace Spender.DataService
 						Id = 2,
 						Description = "transport",
 						Amount = 4,
-						Date = DateTime.Now,
+						Date = DateTime.Now.AddDays(-1),
 						Direction = SpendDirection.OutCome,
 						Type = 1,
 						SubType = 4,
+						User = 0
+					},
+					new Spend
+					{
+						Id = 3,
+						Description = "return from booking",
+						Amount = 370,
+						Date = DateTime.Now.AddDays(-1),
+						Direction = SpendDirection.InCome,
+						Type = 2,
+						SubType = 7,
 						User = 0
 					}
 				};

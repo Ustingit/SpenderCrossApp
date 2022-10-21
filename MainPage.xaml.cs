@@ -18,6 +18,7 @@ public partial class MainPage : ContentPage
 		base.OnAppearing();
 
 		collectionView.ItemsSource = await _service.GetAllAsync();
+		//collectionView.IsGrouped = true;
 	}
 
 	async void OnAddSpendClicked(object sender, EventArgs e)

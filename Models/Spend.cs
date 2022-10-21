@@ -68,6 +68,8 @@ namespace Spender.Models
 			}
 		}
 
+		public string DateAsDateOnly => Date != default(DateTime) ? Date.ToLongDateString() : string.Empty;
+
 		public DateTime Date
 		{
 			get => _date;
